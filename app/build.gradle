@@ -74,5 +74,6 @@ dependencies {
     testCompile presentationTestDependencies.junit
     compile presentationDependencies.appcompat
     compile presentationDependencies.design
+    compile presentationDependencies.glide
     compile project(':domain')
 }

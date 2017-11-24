@@ -10,8 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.godev.demo.MainActivity">
 
-    <TextView
+
+    <Button
+        android:id="@+id/button_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/main_list_view"/>
+
 </RelativeLayout>
