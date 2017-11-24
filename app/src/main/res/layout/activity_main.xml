@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Phân tích từng thuộc tính trong RelativeLayout nhé:
+<?xml version="1.0" encoding="utf-8"?><!-- Phân tích từng thuộc tính trong RelativeLayout nhé:
  1. xmlns:android là gì nhỉ ? Trong XML thì xmlns ám chỉ là Namespace. Khi bạn dùng các tiền tố (prefixes) trong XML -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,12 +16,29 @@
     Bạn có thể sắp xếp view sang bên phải, bên dưới một view khác, giữa màn hình, …. Để xác định thuộc tính cho mỗi view, bạn có thể sử dụng các thuộc tính có sẳn từ RelativeLayout.LayoutParams.-->
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/text_user_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+
     <Button
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_start"/>
+        android:layout_below="@+id/text_user_name"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/button_start" />
+
+    <ImageButton
+        android:id="@+id/button_start_result"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/text_user_name"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_toRightOf="@+id/button_start"
+        android:text="@string/button_start_result"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:background="@drawable/btn_background_blue_stroke_white"/>
+
+
 </RelativeLayout>

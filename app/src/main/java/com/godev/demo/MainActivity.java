@@ -8,12 +8,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 /*
+
+Một Activity là một màn hình với một giao diện người dùng
+
 * Class AppCompatActivity nó kế thừa từ Fragment Activity (thằng này kế thừa một đám khác nhưng chốt hạ là vẫn kề thừa từ class Activity)
 * Nó nằm trong thư viện support v7. (thư viện support v7 này ra đời với mục đích là tạo giao diện material design cho các android trở về trước android 5.0)
 * */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final int ACTIVITY_REQUEST = 100;
+
+    private final String BUNDLE_SAVE_PROGRESS = "BUNDLE_SAVE_PROGRESS";
+
+    private TextView mTextUserName;
+
+    private int mProgress = 10;
 
     /*Method này được gọi vào đâu tiên
     *Trong sự kiện này, bạn phải thực hiện những công việc như tạo giao diện, tải dữ liệu. Sau sự kiện này là sự kiện onStart() được gọi.
@@ -23,6 +35,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //Load giao diện ở layout. (file acitvity_main)
         findViewById(R.id.button_start).setOnClickListener(this); //Set lắng nghe cho nút button start
+        findViewById(R.id.button_start_result).setOnClickListener(this); //Set lắng nghe cho nút button start
+        mTextUserName = (TextView) findViewById(R.id.text_user_name);
+
+        if( savedInstanceState != null ) {
+            mProgress = savedInstanceState.getInt(BUNDLE_SAVE_PROGRESS);
+            Log.e("TAG", "PROGRESS: " + mProgress);
+        }
+
 
         Log.e("TAG", "CREATE");//Log.e là để Log ra các lỗi error (muốn xem Log click chọn Android Monitor, chọn Log level (Debug dành cho Log.d, Error cho Log.e, ...)
     }
@@ -46,8 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (id == R.id.action_settings) {
             //Tao alert Dialog don gian, khi den bai ve alert a se day sau
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("LOL");
+            builder.setTitle("DIALOG");
             builder.show();
+            mProgress = 20;
             return true;
         }
 
@@ -67,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt(BUNDLE_SAVE_PROGRESS, mProgress);
     }
 
     /*
@@ -81,8 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    /**Moi nguoi xem log de biet duoc vong doi Android chay nhu the nao nhe
-     * Cu thao tac start Activity, Bam nut Home, nut Back, Menu de xem nhe-------------------**/
+    /**
+     * Moi nguoi xem log de biet duoc vong doi Android chay nhu the nao nhe
+     * Cu thao tac start Activity, Bam nut Home, nut Back, Menu de xem nhe-------------------
+     **/
 
     /*
     * khi một Activity khác dành quyền hiển thị và trạng thái focus thì Activity hiện hành sẽ gọi sự kiện onPause(). Trong sự kiện này, công việc chúng ta phải làm là lưu trạng thái Activity và tắt các dịch vụ không cần thiết.
@@ -138,13 +162,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.button_start://Khi user click vào button start mình xử lý nó theo dòng code này
                 startActivity(new Intent(MainActivity.this, ContentActivity.class)); //Chạy một màn hình mới là Content Activity.
+                break;
+            case R.id.button_start_result:
+                startActivityForResult(new Intent(MainActivity.this, RegistrationActivity.class), ACTIVITY_REQUEST);
                 break;
             default:
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTIVITY_REQUEST && resultCode == RESULT_OK) {
+            String username = data.getStringExtra(RegistrationActivity.EXTRA_USER_NAME);
+            Log.e("TAG", "USERNAME: " + username);
+            mTextUserName.setText(username);
+        }
+    }
 }
