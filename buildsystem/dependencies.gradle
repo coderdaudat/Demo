@@ -7,15 +7,15 @@ allprojects {
 ext {
     //Android
     androidApplicationId = "com.godev.demo"
-    androidBuildToolsVersion = "25.0.1"
+    androidBuildToolsVersion = "26.0.1"
     androidMinSdkVersion = 15
-    androidTargetSdkVersion = 25
-    androidCompileSdkVersion = 25
+    androidTargetSdkVersion = 26
+    androidCompileSdkVersion = 26
     androidVersionCode = 1
     androidVersionName = "1.0.0"
 
     //Google Libraries
-    supportVersion = '25.0.0'
+    supportVersion = '26.+'
     servicesAuthVersion = '10.0.0'
     firebaseVersion = '10.0.0'
     mapVersion = '10.0.0'

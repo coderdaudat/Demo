@@ -1,3 +1,27 @@
+/*
+//                        /-------------\
+//                       /               \
+//                      /                 \
+//                     /                   \
+//                     |   XXXX     XXXX   |
+//                     |   XXXX     XXXX   |
+//                     |   XXX       XXX   |
+//                     \         X         /
+//                      --\     XXX     /--
+//                       | |    XXX    | |
+//                       | |           | |
+//                       | I I I I I I I |
+//                       |  I I I I I I  |
+//                        \             /
+//                         --         --
+//                           \-------/
+//
+//               READ README.MD BEFORE YOU MAINTAIN
+//
+//         Do not Understand Clean Architecture it means death
+//          (see readme.md on branch master for full details)
+*/
+
 apply plugin: 'com.android.application'
 
 apply from: '../config/quality/quality.gradle'
