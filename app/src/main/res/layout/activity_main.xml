@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Phân tích từng thuộc tính trong RelativeLayout nhé:
+ 1. xmlns:android là gì nhỉ ? Trong XML thì xmlns ám chỉ là Namespace. Khi bạn dùng các tiền tố (prefixes) trong XML -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -10,8 +12,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.godev.demo.MainActivity">
 
+
+    <!-- Trong Relative Layout, vị trí của mỗi view con sẽ được xác định so với các view khác hoặc so với thành phần cha của chúng (thông qua id).
+    Bạn có thể sắp xếp view sang bên phải, bên dưới một view khác, giữa màn hình, …. Để xác định thuộc tính cho mỗi view, bạn có thể sử dụng các thuộc tính có sẳn từ RelativeLayout.LayoutParams.-->
+
     <TextView
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/button_start"/>
 </RelativeLayout>
